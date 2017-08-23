@@ -1,0 +1,134 @@
+<!doctype html>
+<html style="font-size: 37.5px;">
+<head>
+ <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+<title> 紫云府 </title>
+<body ontouchmove="event.preventDefault()">
+	<div class="p1">
+		<img class="view_ziyun" curNum=0 src="images/ziyun_00000.jpg">
+	</div>
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script src="js/swiper.jquery.min.js"></script>
+    <script>
+    $(function () {
+    	var speed = 30    	
+    	var i = 0
+    	controlView(i,speed)
+    	var autoView
+ 		function controlView(i,speed){
+	    	autoView = setInterval(function(){
+				i++
+				var num
+				if  (i<10){
+					num = '0000' + i;
+				}
+				else if (10 <= i && i<100){
+					num = '000' + i;
+				}
+				else if (100<=i){
+					console
+					num = '00' +i;
+				}
+				var curSrc = 'images/ziyun_' + num +'.jpg';
+				$('.view_ziyun').attr('src',curSrc)
+				$('.view_ziyun').attr('curNum',i)
+				if(i>=255){
+					stopAutoView()
+				}
+			},speed);
+	    };
+
+		function stopAutoView(){
+			clearInterval(autoView)
+		}
+		 $("body").on("touchstart", function(e) {
+		      e.preventDefault();
+		      startX = e.originalEvent.changedTouches[0].pageX,
+		      startY = e.originalEvent.changedTouches[0].pageY;
+		  });
+		  $("body").on("touchmove", function(e) {
+		      e.preventDefault();
+		     moveEndX = e.originalEvent.changedTouches[0].pageX,
+		     moveEndY = e.originalEvent.changedTouches[0].pageY,
+		     X = moveEndX - startX,Y = moveEndY - startY;
+		      
+		     if ( Math.abs(X) > Math.abs(Y) && X > 0 ) {
+		     }
+		     else if ( Math.abs(X) > Math.abs(Y) && X < 0 ) {
+		     }
+		     else if ( Math.abs(Y) > Math.abs(X) && Y > 0) {
+	                 if (10< speed){
+	                	speed = speed -5
+	            		stopAutoView()
+	            		var curI = $('.view_ziyun').attr('curNum')
+	            		controlView(parseInt(curI)+1,speed)
+	                }
+		     }
+		     else if ( Math.abs(Y) > Math.abs(X) && Y < 0 ) {
+		        if (speed<400){
+	            		speed = speed +5
+	            		stopAutoView()
+	            		var curI = $('.view_ziyun').attr('curNum')
+	            		controlView(parseInt(curI)+1,speed)
+	            	}
+		     }
+		    else{
+		     }
+		 });
+    	// function changeViewSpeed(){
+
+    	// }
+	 //    var scrollFunc = function (e) {
+	 //        var direct = 0;
+	 //        e = e || window.event;
+	 //        if (e.wheelDelta) {  //判断浏览器IE，谷歌滑轮事件             
+	 //            if (e.wheelDelta > 0) { //当滑轮向上滚动时
+	            	// if (speed<400){
+	            	// 	speed = speed +5
+	            	// 	stopAutoView()
+	            	// 	var curI = $('.view_ziyun').attr('curNum')
+	            	// 	controlView(parseInt(curI)+1,speed)
+	            	// }	            	
+
+	 //            }
+	 //            if (e.wheelDelta < 0) { //当滑轮向下滚动时
+	              //   if (10< speed){
+	              //   	speed = speed -5
+	            		// stopAutoView()
+	            		// var curI = $('.view_ziyun').attr('curNum')
+	            		// controlView(parseInt(curI)+1,speed)
+	              //   }
+	 //            }
+	 //        } else if (e.detail) {  //Firefox滑轮事件
+	 //            if (e.detail> 0) { //当滑轮向上滚动时
+	 //                if (speed<100){
+	 //            		speed = speed +2
+	 //            		stopAutoView()
+	 //            		var curI = $('.view_ziyun').attr('curNum')
+	 //            		controlView(parseInt(curI)+1,speed)
+	 //            	}	            	
+
+	 //            }
+	 //            if (e.detail< 0) { //当滑轮向下滚动时
+	 //                if (20< speed){
+	 //                	speed = speed -2
+	 //            		stopAutoView()
+	 //            		var curI = $('.view_ziyun').attr('curNum')
+	 //            		controlView(parseInt(curI)+1,speed)
+	 //                }
+	 //            }
+	 //        }
+	 //    }
+
+		// if (document.addEventListener) {
+		//     document.addEventListener('DOMMouseScroll', scrollFunc, false);
+		// }
+		// window.onmousewheel = document.onmousewheel = scrollFunc; 
+	})
+    </script>
+  
+
+</body>
+</html>
